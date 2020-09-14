@@ -16,7 +16,9 @@ namespace OOP_5
         {
             InitializeComponent();
             tools.Add(null);
+            tools.Add(new Circle.CircleCreator());
             tools.Add(new Rectangle.RectangleCreator());
+            tools.Add(new Triangle.TriangleCreator());
         }
 
         int userChoise = 0;
@@ -72,21 +74,21 @@ namespace OOP_5
             {
                 //Круг
                 case 1:
-                    Circle circ = new Circle(x, e.X, y, e.Y);
+                    Figure circ = tools[1].Create(x, e.X, y, e.Y);
                     figureList.Add(circ);
                     circ.Draw(gr);
                     break;
 
                 //Квадрат
                 case 2:
-                    Figure rect = tools[1].Create(x, e.X, y, e.Y);
+                    Figure rect = tools[2].Create(x, e.X, y, e.Y);
                     figureList.Add(rect);
                     rect.Draw(gr);
                     break; 
 
                 //Треугольник
                 case 3:
-                    Triangle treyg = new Triangle(x, e.X, y, e.Y);
+                    Figure treyg = new Triangle(x, e.X, y, e.Y);
                     figureList.Add(treyg);
                     treyg.Draw(gr);
                     break;

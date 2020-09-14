@@ -20,13 +20,22 @@ namespace OOP_5
             g.DrawPolygon(new Pen(Color.Black, 3), points1);
         }
 
-        //Наследуем от предка
+        //Конструктор
         public Triangle(int x1, int x2, int y1, int y2)
         {
             this.x1 = x1;
             this.x2 = x2;
             this.y1 = y1;
             this.y2 = y2;
+        }
+
+        //Фабрика
+        public class TriangleCreator : FigureCreator
+        {
+            public override Figure Create(int x1, int x2, int y1, int y2)
+            {
+                return new Triangle(x1, x2, y1, y2);
+            }
         }
 
         //Выбор треугольника

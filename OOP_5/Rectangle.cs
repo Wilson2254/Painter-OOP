@@ -17,7 +17,7 @@ namespace OOP_5
             g.DrawRectangle(new Pen(Color.Black, 3), x1, y1, x2 - x1, y2 - y1);
         }
 
-        //Наследуем от предка
+        //Конструктор
         public Rectangle(int x1, int x2, int y1, int y2)
         {
             this.x1 = x1;
@@ -26,6 +26,7 @@ namespace OOP_5
             this.y2 = y2;
         }
 
+        //Фабрика
         public class RectangleCreator : FigureCreator
         {
             public override Figure Create(int x1, int x2, int y1, int y2)
