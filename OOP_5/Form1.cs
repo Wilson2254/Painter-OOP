@@ -25,7 +25,6 @@ namespace OOP_5
         Graphics gr;
         Figure fig;
         int x, y;
-        Color linecolor = Color.Black;
         List<Figure> figureList = new List<Figure>();
         List<FigureCreator> tools = new List<FigureCreator>();
        
@@ -73,24 +72,21 @@ namespace OOP_5
             switch (userChoise)
             {
                 //Круг
-                case 1:
-                    Figure circ = tools[1].Create(x, e.X, y, e.Y);
-                    figureList.Add(circ);
-                    circ.Draw(gr);
+                case 1:                    
+                    figureList.Add(tools[1].Create(x, e.X, y, e.Y));
+                    tools[1].Create(x, e.X, y, e.Y).Draw(gr);
                     break;
 
                 //Квадрат
                 case 2:
-                    Figure rect = tools[2].Create(x, e.X, y, e.Y);
-                    figureList.Add(rect);
-                    rect.Draw(gr);
+                    figureList.Add(tools[2].Create(x, e.X, y, e.Y));
+                    tools[2].Create(x, e.X, y, e.Y).Draw(gr);
                     break; 
 
                 //Треугольник
                 case 3:
-                    Figure treyg = new Triangle(x, e.X, y, e.Y);
-                    figureList.Add(treyg);
-                    treyg.Draw(gr);
+                    figureList.Add(tools[3].Create(x, e.X, y, e.Y));
+                    tools[3].Create(x, e.X, y, e.Y).Draw(gr);
                     break;
 
                 //Выбор фигуры
@@ -107,9 +103,6 @@ namespace OOP_5
                     {
                         toolStripStatusLabel1.Text = "Клацнул на: " + fig.ToString().Substring(6);
                     }
-                    break;
-
-                default:
                     break;
             }
            
