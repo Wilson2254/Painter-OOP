@@ -15,36 +15,35 @@ namespace OOP_5
         public Form1()
         {
             InitializeComponent();
-            tools.Add(null);
             tools.Add(new Circle.CircleCreator());
             tools.Add(new Rectangle.RectangleCreator());
             tools.Add(new Triangle.TriangleCreator());
         }
 
-        int userChoise = 0;
         Graphics gr;
         Figure fig;
         int x, y;
         List<Figure> figureList = new List<Figure>();
         List<FigureCreator> tools = new List<FigureCreator>();
-       
+        FigureCreator currentTool;
+
         //Выбор пункта меню
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             //Круг
-            userChoise = 1;
+            currentTool = tools[0];
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             //Квадрат
-            userChoise = 2;
+            currentTool = tools[1];
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             //Треугольник
-            userChoise = 3;
+            currentTool = tools[2];
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -58,9 +57,9 @@ namespace OOP_5
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             //Выбор фигуры
-            userChoise = 4;
+            currentTool = null;
         }
-        
+
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             x = e.X;
@@ -69,43 +68,27 @@ namespace OOP_5
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            switch (userChoise)
+            if (currentTool != null)
             {
-                //Круг
-                case 1:                    
-                    figureList.Add(tools[1].Create(x, e.X, y, e.Y));
-                    tools[1].Create(x, e.X, y, e.Y).Draw(gr);
-                    break;
-
-                //Квадрат
-                case 2:
-                    figureList.Add(tools[2].Create(x, e.X, y, e.Y));
-                    tools[2].Create(x, e.X, y, e.Y).Draw(gr);
-                    break; 
-
-                //Треугольник
-                case 3:
-                    figureList.Add(tools[3].Create(x, e.X, y, e.Y));
-                    tools[3].Create(x, e.X, y, e.Y).Draw(gr);
-                    break;
-
-                //Выбор фигуры
-                case 4:
-                    fig = null;
-                    foreach (Figure f in figureList)
-                    {
-                        if (f.Select(e.X, e.Y))
-                        {
-                            fig = f;
-                        }
-                    }
-                    if (fig != null)
-                    {
-                        toolStripStatusLabel1.Text = "Клацнул на: " + fig.ToString().Substring(6);
-                    }
-                    break;
+                currentTool.Create(x, e.X, y, e.Y).Draw(gr);
+                figureList.Add(currentTool.Create(x, e.X, y, e.Y));
             }
-           
+
+            else
+            {
+                fig = null;
+                foreach (Figure f in figureList)
+                {
+                    if (f.Select(e.X, e.Y))
+                    {
+                        fig = f;
+                    }
+                }
+                if (fig != null)
+                {
+                    toolStripStatusLabel1.Text = "Клацнул на: " + fig.ToString().Substring(6);
+                }
+            }
         }
 
         //Отрисовываю все элементы которые пропадают
