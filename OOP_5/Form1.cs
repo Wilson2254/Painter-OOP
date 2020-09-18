@@ -54,11 +54,11 @@ namespace OOP_5
             toolStripStatusLabel1.Text = "Клацнул на: ";
         }
 
-        private void toolStripButton8_Click(object sender, EventArgs e)
-        {
-            //Выбор фигуры
-            currentTool = null;
-        }
+        //private void toolStripButton8_Click(object sender, EventArgs e)
+        //{
+        //    //Выбор фигуры
+        //    currentTool = null;
+        //}
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -72,6 +72,7 @@ namespace OOP_5
             {
                 currentTool.Create(x, e.X, y, e.Y).Draw(gr);
                 figureList.Add(currentTool.Create(x, e.X, y, e.Y));
+                currentTool = null;
             }
 
             else
