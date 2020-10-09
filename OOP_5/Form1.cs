@@ -26,6 +26,7 @@ namespace OOP_5
         List<Figure> figureList = new List<Figure>();
         List<FigureCreator> tools = new List<FigureCreator>();
         FigureCreator currentTool;
+        Manipulator manipulator = new Manipulator();
 
         //Выбор пункта меню
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -87,6 +88,8 @@ namespace OOP_5
                 }
                 if (fig != null)
                 {
+                    manipulator.Attach(fig);
+                    manipulator.Draw(gr);
                     toolStripStatusLabel1.Text = "Клацнул на: " + fig.ToString().Substring(6);
                 }
             }
@@ -99,6 +102,8 @@ namespace OOP_5
             {
                 f.Draw(gr);
             }
+            if (manipulator.fig != null)
+                manipulator.Draw(gr);
         }
 
         //Задаю графику

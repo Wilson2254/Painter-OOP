@@ -13,7 +13,10 @@ namespace OOP_5
     {
 
         //Координаты
-        protected int x1, x2, y1, y2;
+        public int x1 { get; protected set; }
+        public int x2 { get; protected set; }
+        public int y1 { get; protected set; }
+        public int y2 { get; protected set; }
 
 
         //Для рисования
