@@ -67,8 +67,22 @@ namespace OOP_5
             y = e.Y;
         }
 
+
+        private void DrawAll(Graphics g)
+        {
+            foreach (Figure f in figureList)
+            {
+                f.Draw(gr);
+            }
+            //Отрисовка манипулятора
+            if (manipulator.fig != null)
+                manipulator.Draw(gr);
+        }
+
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+            //ОТРИСОВКА ФИГУРЫ
+            manipulator.Detach();
             if (currentTool != null)
             {
                 currentTool.Create(x, e.X, y, e.Y).Draw(gr);
@@ -76,6 +90,7 @@ namespace OOP_5
                 currentTool = null;
             }
 
+            //МОЙ SELECT
             else
             {
                 fig = null;
@@ -84,26 +99,26 @@ namespace OOP_5
                     if (f.Select(e.X, e.Y))
                     {
                         fig = f;
+                        //Связываю манипулятор
+                        manipulator.Attach(fig);
                     }
                 }
                 if (fig != null)
                 {
-                    manipulator.Attach(fig);
-                    manipulator.Draw(gr);
+                    //Прорверка на какой угол нажал
+                    manipulator.Touch(e.X, e.Y);
                     toolStripStatusLabel1.Text = "Клацнул на: " + fig.ToString().Substring(6);
                 }
             }
+            //Обновляю полотно
+            pictureBox1.Refresh();
+            DrawAll(gr);
         }
 
         //Отрисовываю все элементы которые пропадают
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            foreach (Figure f in figureList)
-            {
-                f.Draw(gr);
-            }
-            if (manipulator.fig != null)
-                manipulator.Draw(gr);
+            DrawAll(gr);
         }
 
         //Задаю графику
