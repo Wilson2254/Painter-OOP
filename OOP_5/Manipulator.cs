@@ -15,7 +15,7 @@ namespace OOP_5
         private int corner = -1;
         public override void Draw(Graphics g)
         {
-            g.DrawRectangle(new Pen(Color.Orange, 3), fig.x1, fig.y1 , (fig.x2 - fig.x1),  (fig.y2 - fig.y1) );   
+            g.DrawRectangle(new Pen(Color.Orange, 3), fig.x1, fig.y1 , (fig.x2 - fig.x1),  (fig.y2 - fig.y1));   
             g.DrawRectangle(new Pen(Color.Orange, 3), fig.x1, fig.y1, 10, 10);
             g.DrawRectangle(new Pen(Color.Orange, 3), fig.x2-10, fig.y2-10, 10, 10);
             g.DrawRectangle(new Pen(Color.Orange, 3), fig.x1, fig.y2 - 10, 10, 10);
@@ -75,9 +75,11 @@ namespace OOP_5
             Attach(figure);
         }
 
-        public void Drag(double dx, double dy)
+        //Перемещение
+        public void Drag(int dx, int dy)
         {
-
+            fig.x1 = dx;
+            fig.y1 = dy;
         }
 
         //Проверка на нажатие на конкретный угол

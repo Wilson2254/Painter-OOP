@@ -68,6 +68,7 @@ namespace OOP_5
         }
 
 
+
         private void DrawAll(Graphics g)
         {
             foreach (Figure f in figureList)
@@ -81,6 +82,8 @@ namespace OOP_5
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+
+
             //ОТРИСОВКА ФИГУРЫ
             manipulator.Detach();
             if (currentTool != null)
@@ -120,6 +123,16 @@ namespace OOP_5
         {
             DrawAll(gr);
         }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (fig != null)
+            {
+                manipulator.Drag(e.X, e.Y);
+            }
+        }
+
+
 
         //Задаю графику
         private void Form1_Load(object sender, EventArgs e)
